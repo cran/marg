@@ -1,0 +1,39 @@
+Functions:
+=========
+cond                    Approximate Conditional Inference - Generic
+                        Function
+cond.rsm                Approximate Conditional Inference in
+                        Regression-Scale Models
+dHuber                  Huber's Least Favourable Distribution
+family.rsm              Use family() on a "rsm" object
+family.rsm.object       Family Object for Regression-Scale Models
+logLik.rsm              Compute the Log Likelihood for
+                        Regression-Scale Models
+marg.object             Approximate Marginal Inference Object
+plot.marg               Generate Plots for an Approximate Marginal
+                        Inference Object
+print.summary.marg      Use print() on a "summary.marg" object
+residuals.rsm           Compute Residuals for Regression-Scale Models
+rsm                     Fit a Regression-Scale Model
+rsm.diag                Diagnostics for Regression-Scale Models
+rsm.diag.plots          Diagnostic Plots for Regression-Scale Models
+rsm.families            Generate a RSM Family Object
+rsm.fit                 Fit a Regression-Scale Model Without Computing
+                        the Model Matrix
+rsm.null                Fit an Empty Regression-Scale Model
+rsm.object              Regression-Scale Model Object
+rsm.surv                Fit a Regression-Scale Model Without Computing
+                        the Model Matrix
+summary.marg            Summary Method for Objects of Class "marg"
+summary.rsm             Summary Method for Regression-Scale Models
+update.rsm              Update and Re-fit a RSM Model Call
+vcov.rsm                Calculate Variance-Covariance Matrix for a
+                        Fitted RSM Model
+
+
+Datasets:
+========
+darwin                  Darwin's Data on Growth Rates of Plants
+houses                  House Price Data
+nuclear                 Nuclear Power Station Data
+venice                  Sea Level Data
