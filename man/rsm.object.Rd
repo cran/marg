@@ -137,7 +137,7 @@
 \section{Methods}{
   Objects of this class have methods for the functions 
   \code{\link[base]{print}}, \code{\link[base]{summary}}, 
-  \code{\link[stats]{anova}} and \code{\link[stats]{fitted}} among 
+  \code{\link[stats]{anova}} and \code{\link{fitted}} among 
   others.
 }
 \note{

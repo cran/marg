@@ -133,7 +133,7 @@ rsm(formula = formula(data), family = gaussian,
   argument rather then a formula.  The first function is used for the 
   families \code{student} with \code{df} \eqn{<}{less than} 3 and 
   \code{Huber}; 
-  the second one, based on the \code{\link[survival]{survreg.fit}} 
+  the second one, based on the \code{\link{survreg.fit}} 
   routine for fitting parametric survival models, is used in case of 
   \code{extreme}, \code{logistic}, \code{logWeibull}, 
   \code{logExponential}, \code{logRayleigh} and \code{student} (with 
@@ -151,7 +151,7 @@ rsm(formula = formula(data), family = gaussian,
   The output can be examined by \code{\link[base]{print}}, 
   \code{\link[base]{summary}}, \code{\link{rsm.diag.plots}} and 
   \code{\link[stats]{anova}}.  Components can be extracted using 
-  \code{\link[stats]{fitted}}, \code{\link[stats]{residuals}}, 
+  \code{\link{fitted}}, \code{\link[stats]{residuals}}, 
   \code{\link[stats]{formula}} and \code{\link[stats]{family}}.  It can 
   be modified using \code{\link[stats]{update}}. It has most of the 
   components of a \code{glm} object, with a few more.  Use 

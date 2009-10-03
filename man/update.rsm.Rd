@@ -32,10 +32,10 @@
   call.
 }
 \note{
-  Based upon \code{\link[stats]{update.default}}.
+  Based upon \code{\link{update.default}}.
 }
 \seealso{
-  \code{\link[stats]{update}}, \code{\link[stats]{update.default}}, 
+  \code{\link[stats]{update}}, \code{\link{update.default}}, 
   \code{\link[stats]{update.formula}}
 }
 \examples{

@@ -4,7 +4,7 @@
 \title{Darwin's Data on Growth Rates of Plants}
 \usage{data(darwin)}
 \description{
-The \code{darwin} data frame has 15 rows and 2 columns.
+The \code{darwin} data frame has 15 rows and 3 columns.
 
   Charles Darwin conducted an experiment to examine the superiority of
   cross-fertilized plants over self-fertilized plants.  15 pairs of

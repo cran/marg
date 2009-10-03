@@ -13,16 +13,14 @@ for linear nonnormal regression models
 \details{
 \tabular{ll}{
 Package: \tab marg\cr
-Version: \tab 1.1-3\cr
-Date: \tab 2009-09-14\cr
+Version: \tab 1.2-0\cr
+Date: \tab 2009-10-03\cr
 Depends: \tab R (>= 2.6.0), statmod, survival\cr
 Suggests: \tab boot, cond, csampling, nlreg\cr 
 License: \tab GPL (>= 2)\cr
 URL: \tab http://www.r-project.org, http://statwww.epfl.ch/AA/\cr
 LazyLoad: \tab yes\cr
 LazyData: \tab yes\cr
-Packaged: \tab 2009-09-14 13:23:30 UTC; brazzale\cr
-Built: \tab R 2.9.2; ; 2009-09-14 13:23:40 UTC; unix\cr
 }
 
 Index:
@@ -80,10 +78,4 @@ earlier work by Douglas Bates.
 
 Maintainer: Alessandra R. Brazzale <alessandra.brazzale@unimore.it>
 }
-\references{
-}
 \keyword{ package }
-\seealso{
-}
-\examples{
-}

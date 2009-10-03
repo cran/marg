@@ -1,4 +1,4 @@
-## file marg/R/marg.R, v 1.1-3 2009/09/14
+## file marg/R/marg.R, v 1.2-0 2009/10/03
 ##
 ##  Copyright (C) 2000-2009 Alessandra R. Brazzale 
 ##
