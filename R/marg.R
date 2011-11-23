@@ -1,6 +1,6 @@
-## file marg/R/marg.R, v 1.2-0 2009/10/03
+## file marg/R/marg.R, v 1.2-1 2011/11/23
 ##
-##  Copyright (C) 2000-2009 Alessandra R. Brazzale 
+##  Copyright (C) 2000-2011 Alessandra R. Brazzale 
 ##
 ##  This file is part of the "marg" package for R.  This program is 
 ##  free software; you can redistribute it and/or modify it under the 
@@ -19,10 +19,10 @@
 ##  USA or look up the web page http://www.gnu.org/copyleft/gpl.html.
 ##
 ##  Please send any comments, suggestions or errors found to:
-##  Alessandra R. Brazzale, DSSCQ, University of Modena and Reggio
-##  Emilia, Viale Allegri 9, 42100 Reggio Emilia (RE), Italy.
-##  Email: alessandra.brazzale@unimore.it.  
-##  Web: http://www.isib.cnr.it/~brazzale/index.html.
+##  Alessandra R. Brazzale, Department of Statistics, University of
+##  Padova, Via C. Battisti 241/243, 35121 Padova (PD), Italy.
+##  Email: alessandra.brazzale@unipd.it  
+##  Web: http://www.stat.unipd.it/~brazzale
 
 rsm.distributions <- structure(.Data = 
              list(g0 = function(y,df,...)  (df+1)/2*log(1+y^2/df),
@@ -1048,7 +1048,7 @@ anova.rsmlist <- function(object, ... , test = c("Chisq", "none"))
   object <- object[subs]
   dfres <- sapply(object, "[[", "df.residuals")
   m2loglik <- -2*sapply(object, "[[", "loglik")
-  tl <- lapply(object, labels)
+#  tl <- lapply(object, labels)
   rt <- length(m2loglik)
   effects <- character(rt)
   dm2loglik <- -diff(m2loglik)
