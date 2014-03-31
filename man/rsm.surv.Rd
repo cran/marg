@@ -8,7 +8,8 @@
   response vector.
 }
 \usage{
-rsm.surv(X, Y, offset, family, dispersion, maxit, epsilon, trace, \dots)
+rsm.surv(X, Y, offset, family, dispersion, score.dispersion, maxit, epsilon, 
+         trace, \dots)
 }
 \arguments{
   \item{X}{
@@ -33,6 +34,9 @@ rsm.surv(X, Y, offset, family, dispersion, maxit, epsilon, trace, \dots)
     returned, otherwise the scale parameter is fixed to the numerical 
     value passed through the argument. 
   }
+  \item{score.dispersion}{
+  	must default to \code{NULL}.
+  }	
   \item{maxit}{
     maximum number of iterations.
   }

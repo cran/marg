@@ -7,8 +7,8 @@
   Fits a \code{rsm} model with empty model matrix.
 }
 \usage{
-rsm.null(X = NULL, Y, offset, family, dispersion, maxit, epsilon, 
-         trace, \dots)
+rsm.null(X = NULL, Y, offset, family, dispersion, score.dispersion, maxit, 
+         epsilon, trace, \dots)
 }
 \arguments{
   \item{X}{ 
@@ -24,6 +24,9 @@ rsm.null(X = NULL, Y, offset, family, dispersion, maxit, epsilon,
     \code{TRUE}, the \acronym{MAD} is computed and the scale parameter 
     fixed to this value in subsequent calculations.
   }
+  \item{score.dispersion}{
+  	must default to \code{NULL}.
+  }	
   \item{offset}{
     optional offset added to the linear predictor.
   }

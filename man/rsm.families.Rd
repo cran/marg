@@ -17,9 +17,6 @@ extreme()
 Huber(k = 1.345)
 logistic()
 logWeibull()
-student(df = value)
-}
-\synopsis{
 student(df = stop("Argument \"df\" is missing, with no default"))
 }
 \arguments{

@@ -10,10 +10,8 @@
   this function and for the interpretation of \code{digits}.
 }
 \usage{
-\method{print}{rsm}(x, digits = value, \dots)
-}
-\synopsis{
 \method{print}{rsm}(x, digits=max(3, getOption("digits")-3), ...)
+\method{print}{rsm}(x, digits, \dots)
 }
 \seealso{
   \code{\link{rsm.object}}, \code{\link[base]{print}},

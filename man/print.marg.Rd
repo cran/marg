@@ -10,10 +10,8 @@
   this function and for the interpretation of \code{digits}.
 }
 \usage{
-\method{print}{marg}(x, digits = value, \dots)
-}
-\synopsis{
 \method{print}{marg}(x, digits=max(3, getOption("digits")-3), ...)
+\method{print}{marg}(x, digits, \dots)
 }
 \seealso{
   \code{\link{marg.object}}, \code{\link[base]{print}},

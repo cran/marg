@@ -11,12 +11,9 @@
   of \code{x}, \code{digits}, \code{signif.stars} and \code{quote}.
 }
 \usage{
-\method{print}{summary.rsm}(x, digits = value, signif.stars = value, quote = TRUE, \dots)
-}
-\synopsis{
 \method{print}{summary.rsm}(x, digits=max(3, getOption("digits")-3), 
-                  signif.stars = getOption("show.signif.stars"), 
-                  quote=TRUE, ...)
+      signif.stars = getOption("show.signif.stars"), quote=TRUE, \dots)
+\method{print}{summary.rsm}(x, digits, signif.stars, quote = TRUE, \dots)
 }
 \seealso{
   \code{\link{summary.rsm}}, \code{\link[base]{print}},

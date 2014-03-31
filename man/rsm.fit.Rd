@@ -8,7 +8,8 @@
   response vector.
 }
 \usage{
-rsm.fit(X, Y, offset, family, dispersion, maxit, epsilon, trace, \dots)
+rsm.fit(X, Y, offset, family, dispersion, score.dispersion, maxit, epsilon, 
+        trace, \dots)
 }
 \arguments{
   \item{X}{
@@ -25,6 +26,9 @@ rsm.fit(X, Y, offset, family, dispersion, maxit, epsilon, trace, \dots)
     \acronym{MAD} is computed and the scale parameter fixed to this 
     value in subsequent calculations.
   }
+  \item{score.dispersion}{
+  	must default to \code{NULL}.
+  }	
   \item{offset}{
     optional offset added to the linear predictor.
   }

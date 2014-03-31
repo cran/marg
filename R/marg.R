@@ -1,6 +1,6 @@
-## file marg/R/marg.R, v 1.2-1 2011/11/23
+## file marg/R/marg.R, v 1.2-2 2014-03-31
 ##
-##  Copyright (C) 2000-2011 Alessandra R. Brazzale 
+##  Copyright (C) 2000-2014 Alessandra R. Brazzale 
 ##
 ##  This file is part of the "marg" package for R.  This program is 
 ##  free software; you can redistribute it and/or modify it under the 
@@ -163,7 +163,7 @@ rHuber <- function(n, k = 1.345)
 rsm <- function(formula = formula(data), family = gaussian, 
                 data = sys.frame(sys.parent()), dispersion = NULL,
                 weights = NULL, subset = NULL, na.action = na.fail,
-               offset = NULL, method = "rsm.surv", 
+                offset = NULL, method = "rsm.surv", 
                 control = glm.control(maxit=100, trace=FALSE),
                 model = FALSE, x = FALSE, y = TRUE, contrasts = NULL,
                 ...)
@@ -308,9 +308,11 @@ rsm <- function(formula = formula(data), family = gaussian,
   .family <- if(is.call(call$family)) eval(call$family)
             else  do.call(deparse(call$family, width.cutoff=500), list())
   offset4fit <- offset
+  score.dispersion <- NULL
   fit <- rsm.fitter(X=X, Y=Y, offset=offset4fit, family=.family,
-                    dispersion=dispersion, maxit=control$maxit,
-                    epsilon=control$epsilon, trace=control$trace, ...)
+                    dispersion=dispersion, score.dispersion = score.dispersion,
+                    maxit=control$maxit, epsilon=control$epsilon, 
+                    trace=control$trace, ...)
   if(any(wzero))
   {
     nas <- is.na(fit$coef)
@@ -358,6 +360,7 @@ rsm <- function(formula = formula(data), family = gaussian,
                       data = data,
                       terms = mt,
                       contrasts = attr(X, "contrasts"),
+                      offset = offset,	## 25.10.13
                       control = control,
                       call = org.call ))
   if(y) fit$y <- if(exists("Y.org",frame=sys.nframe())) Y.org else Y
@@ -368,8 +371,8 @@ rsm <- function(formula = formula(data), family = gaussian,
   fit
 }
 
-rsm.fit <- function(X, Y, offset, family, dispersion, maxit, epsilon, 
-                    trace, ...)
+rsm.fit <- function(X, Y, offset, family, dispersion, score.dispersion, 
+                    maxit, epsilon, trace, ...)
 {
   aux.model <- glm.fit(x=X, y=Y, offset=offset, intercept=FALSE)
   attr(aux.model, "class") <- c("glm","lm")
@@ -420,7 +423,7 @@ rsm.fit <- function(X, Y, offset, family, dispersion, maxit, epsilon,
       else
       {
         y.aux <- w.1/w.2
-        aux.model <- glm.fit(x=X, y=y.aux, w=w.2, family=gaussian(),
+        aux.model <- glm.fit(x=X, y=y.aux, weights=w.2, family=gaussian(),
                              intercept=FALSE)
         attr(aux.model, "class") <- c("glm","lm")
         new.start <- start + dispersion*coef(aux.model)
@@ -523,16 +526,13 @@ rsm.fit <- function(X, Y, offset, family, dispersion, maxit, epsilon,
               q2 = w.2,
               rank = rank,
               R = R,
-              score.dispersion = if(exists("score.dispersion",
-                                    frame=sys.nframe()))
-                                     score.dispersion else NULL,
-              iter = iter )
-  
+			  score.dispersion = score.dispersion,
+              iter = iter )  
   fit
 }
 
-rsm.surv <- function(X, Y, offset, family, dispersion, maxit, 
-                     epsilon, trace, ...)
+rsm.surv <- function(X, Y, offset, family, dispersion, score.dispersion, 
+                     maxit, epsilon, trace, ...)
 {
   offset4surv <- offset
   aux.model <- glm.fit(x=X, y=Y, offset=offset4surv, intercept=FALSE)
@@ -629,15 +629,13 @@ rsm.surv <- function(X, Y, offset, family, dispersion, maxit,
               q2 = w.2,
               rank = rank,
               R = R,
-              score.dispersion = if(exists("score.dispersion",
-                                    frame=sys.nframe()))
-                                     score.dispersion else NULL,
+              score.dispersion = score.dispersion,
               iter = fit$iter )
   fit
 }
 
-rsm.null <- function(X=NULL, Y, offset, family, dispersion, maxit, 
-                     epsilon, trace, ...)
+rsm.null <- function(X=NULL, Y, offset, family, dispersion, score.dispersion,
+                     maxit, epsilon, trace, ...)
 {
   is.null.disp <- is.null(dispersion)
   huber.disp <- !is.null.disp && !is.numeric(dispersion)
@@ -667,6 +665,7 @@ rsm.null <- function(X=NULL, Y, offset, family, dispersion, maxit,
   else
     if(huber.disp)
       dispersion <- median(abs(abs.res))/0.6745
+      
   rank <- 0
   coefs <- NULL
   fitted <- offset
@@ -686,9 +685,6 @@ rsm.null <- function(X=NULL, Y, offset, family, dispersion, maxit,
     loglik <- loglik + nobs*log( gamma((df+1)/2)/gamma(1/2)/
                                  gamma(df/2)/sqrt(df) )
   }
-  score.dispersion <- if( exists("score.dispersion", frame=sys.nframe()) )
-                        score.dispersion 
-                      else NULL 
   fit <- list( coefficients = coefs,
                dispersion = dispersion,
                fixed = !is.null.disp,
@@ -1193,7 +1189,7 @@ rsm.diag.plots <- function(rsmfit, rsmdiag = NULL, weighting = NULL,
     switch(pick,
            "1" = { par(pty="s", mfrow=c(1,1))
 ##
-                   close.screen(all = TRUE)
+                   close.screen(all.screens = TRUE)
                    split.screen(c(2, 2))
 ##
                    screen(1)       ##
@@ -1261,9 +1257,9 @@ rsm.diag.plots <- function(rsmfit, rsmdiag = NULL, weighting = NULL,
                      else yes <- FALSE
                    }
 ##
-                   close.screen(all=TRUE)
+                   close.screen(all.screens=TRUE)
                    par(ask=TRUE)
-                   split.screen(fig=c(1,2))
+                   split.screen(figs=c(1,2))
 ##
                    screen(1)       ##
 ##  Plot the Cook statistics against h/(1-h) and draw line to highlight
@@ -1318,7 +1314,7 @@ rsm.diag.plots <- function(rsmfit, rsmdiag = NULL, weighting = NULL,
                      else yes <- FALSE
                    }
 ##
-                   close.screen(all = TRUE)
+                   close.screen(all.screens = TRUE)
                    par(ask=FALSE)
                  },
            "2" = { par(pty="s", mfrow=c(1,1))
@@ -1423,7 +1419,7 @@ rsm.diag.plots <- function(rsmfit, rsmdiag = NULL, weighting = NULL,
                     title = "\n Make a plot selection (or 0 to exit)\n")
     if( (pick == 0) || !missing(which) )
     {
-      invisible(close.screen(all=TRUE))
+      invisible(close.screen(all.screens=TRUE))
       break
     }
   }
@@ -1536,8 +1532,9 @@ cond.rsm <- function(object, offset, formula = NULL, family = NULL,
                     }
                   }
                 })
-    assign(".offset", .offset, pos=1)		
-    on.exit(remove(".offset", pos=1), add=TRUE)
+#    assign(".offset", .offset, envir=sys.frame())                 
+#    assign(".offset", .offset, pos=1)		## 20.05.13		
+#    on.exit(remove(".offset", pos=1), add=TRUE)
   }
   if(!missing(pts) && (pts < 0))
     stop("Invalid argument: negative values not allowed for \"pts\"")
@@ -1607,13 +1604,14 @@ cond.rsm <- function(object, offset, formula = NULL, family = NULL,
     part.i.mixed.1 <- vector("numeric", lengthOC)
   if((object$family[[1]] == "Huber") && object$fixed)
     object$call["dispersion"] <- object$dispersion
-  if( (length(attr(Terms, "term.labels")) == 0) &&
-      !is.null(attr(Terms, "offset")) )
-  { 
-    ..offset <- modOff <- model.offset(model.frame(object))
-    assign("..offset", ..offset, pos=1)		
-    on.exit(remove("..offset", pos=1), add=TRUE)
-  }
+#  if( (length(attr(Terms, "term.labels")) == 0) &&
+#      !is.null(attr(Terms, "offset")) )
+#  { 
+#    ..offset <- modOff <- model.offset(model.frame(object))
+##    assign("..offset", ..offset, envir=sys.frame())                 
+##    assign("..offset", ..offset, pos=1)		## 20.05.13		
+##    on.exit(remove("..offset", pos=1), add=TRUE)
+#  }
   for(i in seq(along=offsetCoef))
   {
     if(trace) 
@@ -1631,42 +1629,70 @@ cond.rsm <- function(object, offset, formula = NULL, family = NULL,
                        .object$data <- object$data
                      },
            "1"     = { 
-                       if( (length(attr(Terms, "term.labels")) == 0) &&
-                           !is.null(attr(Terms, "offset")) )
-                       {
-                         ..offset <- modOff + offsetCoef[i]*.offset
-                         assign("..offset", ..offset, pos=1)		
-                         nf <- as.formula(
-                                 paste(deparse(formula(object)[[2]], 
-                                               width.cutoff=500), 
-                                       " ~ -1 + offset(..offset)",
-                                       collapse=""))
-                         .object$formula <- nf
-                         environment(.object$formula) <- 
-                                  environment(object$formula)
-                       }
+                       nf <- as.formula(".~. -1")                       
+                       nf <- update(.object$formula, nf)   
+                       .object$formula <- nf
+                       if(!is.null(.object$offset))
+                         .object$offset <- object$offset + offsetCoef[i]*.offset
                        else
-                       {
-                         nf <- as.formula(
-                                 paste(deparse(formula(object),   
-                                               width.cutoff=500), 
-                                       "-1 + offset(", offsetCoef[i], 
-                                       "*.offset)", collapse=""))
-                         .object$formula <- nf
-                         environment(.object$formula) <- 
-                                  environment(object$formula)
-                       }
+                         .object$offset <- offsetCoef[i]*.offset  
+                       environment(.object$formula) <- 
+                         environment(object$formula)             
                      },
-           { 
-             nf <- as.formula(paste(".~.-", .offsetName))
-             nf <- update(.object$formula, nf)
-             nf <- as.formula(paste(deparse(nf, width.cutoff=500), 
-                                    "+ offset(", offsetCoef[i], 
-                                    "* .offset)", collapse=""))
-             .object$formula <- nf
-             environment(.object$formula) <- 
-                                  environment(object$formula)
-           })
+                    { 
+					   nf <- as.formula(paste(".~.-", .offsetName))			
+                       nf <- update(.object$formula, nf)   
+                       .object$formula <- nf
+                       if(!is.null(.object$offset))
+                         .object$offset <- object$offset + offsetCoef[i]*.offset
+                       else
+                         .object$offset <- offsetCoef[i]*.offset  
+                       environment(.object$formula) <- 
+                         environment(object$formula)       
+                    })
+#    switch(offsetName, 
+#           "scale" = { 
+#                       .object$dispersion <- exp(offsetCoef[i])
+#                       .object$data <- object$data
+#                     },
+#           "1"     = { 
+#                       if( (length(attr(Terms, "term.labels")) == 0) &&
+#                           !is.null(attr(Terms, "offset")) )
+#                       {
+#                         ..offset <- modOff + offsetCoef[i]*.offset
+#                         assign("..offset", ..offset, envir=sys.frame())
+#                         assign("..offset", ..offset, pos=1)		## 20.05.13
+#                         nf <- as.formula(
+#                                 paste(deparse(formula(object)[[2]], 
+#                                               width.cutoff=500), 
+#                                       " ~ -1 + offset(..offset)",
+#                                       collapse=""))
+#                         .object$formula <- nf
+#                         environment(.object$formula) <- 
+#                                  environment(object$formula)
+#                       }
+#                       else
+#                       {
+#                         nf <- as.formula(
+#                                 paste(deparse(formula(object),   
+#                                               width.cutoff=500), 
+#                                       "-1 + offset(", offsetCoef[i], 
+#                                       "*.offset)", collapse=""))
+#                         .object$formula <- nf
+#                         environment(.object$formula) <- 
+#                                  environment(object$formula)
+#                       }
+#                     },
+#           { 
+#             nf <- as.formula(paste(".~.-", .offsetName))
+#             nf <- update(.object$formula, nf)
+#             nf <- as.formula(paste(deparse(nf, width.cutoff=500), 
+#                                    "+ offset(", offsetCoef[i], 
+#                                    "* .offset)", collapse=""))
+#             .object$formula <- nf
+#             environment(.object$formula) <- 
+#                                  environment(object$formula)
+#           })
    .object <- eval(.object)
     disp.0[i] <- ifelse(offsetName == "scale", exp(offsetCoef[i]),
                         .object$dispersion[1])
@@ -2056,7 +2082,7 @@ plot.marg <- function(x = stop("nothing to plot"), from = x.axis[1],
 
            }
 ##               ---------------
-                        invisible(close.screen(all = TRUE))
+                        invisible(close.screen(all.screens = TRUE))
                         par(ask = TRUE)
                         invisible(split.screen(figs = c(2,2)))
 ##               ---------------
@@ -2271,11 +2297,11 @@ plot.marg <- function(x = stop("nothing to plot"), from = x.axis[1],
                     cex=cex, ...)
            }
 ##               ---------------
-			invisible(close.screen(all = TRUE))
+			invisible(close.screen(all.screens = TRUE))
                         par(ask = TRUE)
                         par(pty="s")
-                        if(is.scalar)  split.screen(fig=c(1,2))
-                          else  split.screen(fig=c(2,2))
+                        if(is.scalar)  split.screen(figs=c(1,2))
+                          else  split.screen(figs=c(2,2))
 ##               ---------------
            screen(1)
            plot(inf.mp, type="n", xlab="", ylab="", cex.lab=cex.lab,
@@ -2315,7 +2341,7 @@ plot.marg <- function(x = stop("nothing to plot"), from = x.axis[1],
                      main="NP correction term", ...)
            }
 ##               ---------------
-                        close.screen(all=TRUE)
+                        close.screen(all.screens=TRUE)
                         par(pty="m")
                         par(ask = FALSE)
 		}
@@ -2607,10 +2633,10 @@ plot.marg <- function(x = stop("nothing to plot"), from = x.axis[1],
                 }
                 , 
                 "7" = {
-			invisible(close.screen(all = TRUE))
+			invisible(close.screen(all.screens = TRUE))
                         par(pty="s")
-                        if(is.scalar)  split.screen(fig=c(1,2))
-                          else  split.screen(fig=c(2,2))
+                        if(is.scalar)  split.screen(figs=c(1,2))
+                          else  split.screen(figs=c(2,2))
 ##               ---------------
 
            screen(1)
@@ -2651,7 +2677,7 @@ plot.marg <- function(x = stop("nothing to plot"), from = x.axis[1],
                      main="NP correction term", ...)
            }
 ##               ---------------
-                        close.screen(all=TRUE)
+                        close.screen(all.screens=TRUE)
                         par(pty="m")
                         })
     if( missing(which) )
@@ -2659,7 +2685,7 @@ plot.marg <- function(x = stop("nothing to plot"), from = x.axis[1],
                    title="\n Make a plot selection (or 0 to exit)\n")
     if( (pick == 0) || !missing(which) )
     {
-      invisible(close.screen(all=TRUE))
+      invisible(close.screen(all.screens=TRUE))
       break
     }
   }
