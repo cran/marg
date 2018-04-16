@@ -9,3 +9,35 @@ import(
   statmod,
   survival
 )
+
+importFrom("graphics", "abline", "close.screen", "identify", "legend",
+           "lines", "locator", "matplot", "par", "plot", "screen",
+           "segments", "split.screen", "text", "title")
+importFrom("stats", "as.formula", "coef", "contrasts", "dexp", "dnorm",
+           "family", "formula", "gaussian", "glm.control", "glm.fit",
+           "is.empty.model", "lm.fit", "median", "model.extract",
+           "model.frame", "model.frame.default", "model.matrix",
+           "model.offset", "model.response", "model.weights",
+           "na.fail", "optim", "pexp", "plogis", "pnorm", "ppoints",
+           "predict", "printCoefmat", "pt", "pweibull", "qchisq",
+           "qnorm", "resid", "runif", "smooth.spline", "spline",
+           "stat.anova", "update", "update.formula")
+importFrom("utils", "menu")
+
+S3method(anova, rsm)
+S3method(anova, rsmlist)
+S3method(cond, rsm)
+S3method(family, rsm)
+S3method(logLik, rsm)
+S3method(plot, marg)
+S3method(plot, rsm)
+S3method(print, family.rsm)
+S3method(print, marg)
+S3method(print, rsm)
+S3method(print, summary.marg)
+S3method(print, summary.rsm)
+S3method(residuals, rsm)
+S3method(summary, marg)
+S3method(summary, rsm)
+S3method(update, rsm)
+S3method(vcov, rsm)
