@@ -1,5 +1,5 @@
-\name{family.rsm.object}
-\alias{family.rsm.object}
+\name{familyRsm.object}
+\alias{familyRsm.object}
 \title{
   Family Object for Regression-Scale Models
 }
@@ -17,13 +17,13 @@
   \code{rsm} fitting routine.  New families can be added to the 
   ones already supported.  See the demonstration file 
   \file{margdemo.R} that ships with the package.  There is a 
-  \code{print} method for \code{family.rsm} objects which 
+  \code{print} method for \code{familyRsm} objects which 
   produces a simple summary without any detail; use 
-  \code{unclass(family.rsm.object)} to see the contents.
+  \code{unclass(familyRsm.object)} to see the contents.
 }
 \section{Structure}{
   The following components, with the corresponding functionality,
-  are required for a \code{family.rsm} object:
+  are required for a \code{familyRsm} object:
   \describe{
     \item{\code{family}}{
       a character vector giving the family name.

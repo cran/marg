@@ -5,7 +5,7 @@
 }
 \description{
   This is a method for the function \code{family()} for objects 
-  from which a \code{family.rsm} object can be extracted.  Typically 
+  from which a \code{familyRsm} object can be extracted.  Typically 
   a fitted \code{rsm} model object.  See \code{\link[stats]{family}} for 
   the general behaviour of this function.
 }
@@ -14,14 +14,14 @@
 }
 \arguments{
   \item{object}{
-    any object from which a \code{family.rsm} object can be extracted.   
+    any object from which a \code{familyRsm} object can be extracted.   
   }
   \item{\dots}{
     absorbs any additional argument.  
   }
 }
 \seealso{
-  \code{\link{family.rsm.object}}, \code{\link[stats]{family}}
+  \code{\link{familyRsm.object}}, \code{\link[stats]{family}}
 }
 \examples{
 ## Sea Level Data

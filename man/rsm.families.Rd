@@ -9,7 +9,7 @@
   Generate a RSM Family Object
 }
 \description{
-  Generates a \code{family.rsm} object containing a list of functions 
+  Generates a \code{familyRsm} object containing a list of functions 
   and expressions used by \code{rsm}.
 }
 \usage{
@@ -36,16 +36,16 @@ student(df = stop("Argument \"df\" is missing, with no default"))
   create a new generator function.  When passed as an argument to 
   \code{rsm} with the default setting, the empty parentheses 
   \code{()} can be omitted.  There is a \code{print} method for the
-  class \code{family.rsm}.
+  class \code{familyRsm}.
 }
 \value{
-  A \code{family.rsm} object, which is a list of functions and 
-  expressions used by \code{rsm} in the iteratively reweighted 
-  least-squares algorithm.  See \code{\link{family.rsm.object}} for 
+  A \code{familyRsm} object, which is a list of functions and 
+  expressions used by \code{rsm} in the iteratively reweighed 
+  least-squares algorithm.  See \code{\link{familyRsm.object}} for 
   details.
 }
 \seealso{
-  \code{\link{family.rsm.object}}, \code{\link{family.rsm}}, 
+  \code{\link{familyRsm.object}}, \code{\link{family.rsm}}, 
   \code{\link{rsm}}, \code{\link{Huber}}
 }
 \examples{

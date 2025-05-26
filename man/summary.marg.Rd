@@ -26,7 +26,7 @@
   }
   \item{all}{
     logical value; if \code{TRUE} all the information stored in the 
-    \code{summary.marg} object is printed, else only a subset of it.  
+    \code{summaryMarg} object is printed, else only a subset of it.  
     The default is \code{FALSE}.
   }
   \item{coef}{
@@ -103,7 +103,7 @@
   }
   \item{all}{
     logical value; if \code{TRUE}, all the information stored in the
-    \code{summary.marg} object is printed.
+    \code{summaryMarg} object is printed.
   }
   \item{cf}{
     logical value; if \code{TRUE}, the parameter estimates are printed.

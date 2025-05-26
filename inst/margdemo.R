@@ -1,6 +1,6 @@
-## file marg/inst/margdemo.R, v 1.0.1 (2013-05-14)
+## file marg/inst/margdemo.R, v 1.0.1 (2025-05-22)
 ##
-##  Copyright (C) 2000-2013 Alessandra R. Brazzale 
+##  Copyright (C) 2000-2025 Alessandra R. Brazzale 
 ##
 ##  This file is part of the "marg" package for R.  This program is 
 ##  free software; you can redistribute it and/or modify it under the 
@@ -23,7 +23,7 @@
 ##  Alessandra R. Brazzale, Department of Statistics, University of
 ##  Padova, Via C. Battisti 241/243, 35121 Padova (PD), Italy.
 ##  Email: alessandra.brazzale@unipd.it 
-##  Web: http://www.stat.unipd.it/~brazzale
+##  Web: https://homes.stat.unipd.it/alessandrarosalbabrazzale/
 
 
 ## ===================================================================

@@ -7,7 +7,7 @@
   Support object for regression-scale models
 }
 \details{
-  This is a matrix object used in the construction of \code{family.rsm} 
+  This is a matrix object used in the construction of \code{familyRsm} 
   objects.  It is of mode \code{list}, and has dimension \code{c(3,5)}.  
   The 5 columns in
 
@@ -25,12 +25,12 @@
   degrees of freedom and the tuning constant.
 
   This object is used by the functions \code{make.family.rsm} and,
-  indirectly, by \code{rsm} when constructing a \code{family.rsm}
-  object.  See the documentation of \code{\link{family.rsm.object}}
+  indirectly, by \code{rsm} when constructing a \code{familyRsm}
+  object.  See the documentation of \code{\link{familyRsm.object}}
   and \code{\link{make.family.rsm}} for additional details.
 }
 \seealso{
-  \code{\link{family.rsm.object}}, \code{\link{make.family.rsm}},
+  \code{\link{familyRsm.object}}, \code{\link{make.family.rsm}},
   \code{\link{rsm}}
 }
 \examples{

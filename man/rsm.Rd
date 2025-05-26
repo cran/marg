@@ -133,7 +133,7 @@ rsm(formula = formula(data), family = gaussian,
   argument rather then a formula.  The first function is used for the 
   families \code{student} with \code{df} \eqn{<}{less than} 3 and 
   \code{Huber}; 
-  the second one, based on the \code{\link{survreg.fit}} 
+  the second one, based on the \code{\link[survival]{survreg.fit}} 
   routine for fitting parametric survival models, is used in case of 
   \code{extreme}, \code{logistic}, \code{logWeibull}, 
   \code{logExponential}, \code{logRayleigh} and \code{student} (with 

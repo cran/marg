@@ -31,3 +31,13 @@ Version 1.2-2:
     o Updated to R version 3.0.0
     
     o Fixed scoping rules
+
+Version 1.2-3: 
+
+    o Fixed documentation
+
+Version 1.2-4: 
+
+    o Updated to R version 4.5.0
+
+    o Fixed S3 methods

@@ -1,25 +1,25 @@
-\name{print.family.rsm}
-\alias{print.family.rsm}
+\name{print.familyRsm}
+\alias{print.familyRsm}
 \title{
-  Use print() on a ``family.rsm'' object
+  Use print() on a ``familyRsm'' object
 }
 \description{
   This is a method for the function \code{print()} for objects 
-  inheriting from class \code{family.rsm}.  See 
+  inheriting from class \code{familyRsm}.  See 
   \code{\link[base]{print}} or \code{\link[base]{print.default}} for 
   the general behaviour of this function.
 }
 \usage{
-\method{print}{family.rsm}(x, \dots)
+\method{print}{familyRsm}(x, \dots)
 }
 \details{
- A \code{family.rsm} object is a list of functions and expressions.  
+ A \code{familyRsm} object is a list of functions and expressions.  
   All that is printed is an identification label.  To see the 
   functions themselves, access the individual components, or use 
   \code{print.default()} or \code{unclass()}.
 }
 \seealso{
-  \code{\link{family.rsm.object}}, \code{\link[base]{print}},
+  \code{\link{familyRsm.object}}, \code{\link[base]{print}},
   \code{\link[base]{print.default}}
 }
 \examples{

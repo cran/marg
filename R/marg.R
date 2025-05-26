@@ -1,6 +1,6 @@
-## file marg/R/marg.R, v 1.2-2 2014-03-31
+## file marg/R/marg.R, v 1.2-4 2025-05-22
 ##
-##  Copyright (C) 2000-2014 Alessandra R. Brazzale 
+##  Copyright (C) 2000-2025 Alessandra R. Brazzale 
 ##
 ##  This file is part of the "marg" package for R.  This program is 
 ##  free software; you can redistribute it and/or modify it under the 
@@ -22,7 +22,7 @@
 ##  Alessandra R. Brazzale, Department of Statistics, University of
 ##  Padova, Via C. Battisti 241/243, 35121 Padova (PD), Italy.
 ##  Email: alessandra.brazzale@unipd.it  
-##  Web: http://www.stat.unipd.it/~brazzale
+##  Web: https://homes.stat.unipd.it/alessandrarosalbabrazzale/
 
 rsm.distributions <- structure(.Data = 
              list(g0 = function(y,df,...)  (df+1)/2*log(1+y^2/df),
@@ -102,7 +102,7 @@ make.family.rsm <- function(name, arg, ...)
                  k=if(charmatch(name, "Huber", FALSE)) arg)
   names(family) <- c("g0", "g1", "g2", "df", "k")
   structure(.Data = c(list(family=name), family), 
-            class=c("family.rsm","family"))
+            class=c("familyRsm","family"))
 }
 
 family.rsm <- function(object, ...)
@@ -113,7 +113,7 @@ family.rsm <- function(object, ...)
       do.call(deparse(object$call$family, width.cutoff=500), list())
 }
 
-print.family.rsm <- function(x, ...)
+print.familyRsm <- function(x, ...)
 {
   cat(x$family, "family\n")
   cat("\n g  : ", deparse(x[["g0"]], width.cutoff=500)) 
@@ -869,11 +869,11 @@ summary.rsm <- function(object, correlation=FALSE, digits=NULL, ...)
                    nas = nas,
                    call = object$call,
                    digits = digits)
-  attr(summary,"class") <- c("summary.rsm")
+  attr(summary,"class") <- c("summaryRsm")
   summary
 }
 
-print.summary.rsm <- function(x, 
+print.summaryRsm <- function(x, 
                               digits = max(3, getOption("digits")-3), 
                               signif.stars = getOption(
                                                 "show.signif.stars"),
@@ -2799,11 +2799,11 @@ summary.marg <- function(object, alpha = 0.05, test = NULL,
                           n.approx = object$n.approx,
                           all = all, cf = coef, int = int,
                           is.scalar = is.scalar, digits = digits )
-  class(summary.object) <- c("summary.marg", "summary.cond")
+  class(summary.object) <- c("summaryMarg", "summaryCond")
   summary.object
 }
 
-print.summary.marg <- function(x, all = x$all, Coef = x$cf,
+print.summaryMarg <- function(x, all = x$all, Coef = x$cf,
                                int = x$int, test = x$hyp,
                                digits = if(!is.null(x$digits)) x$digits
                                         else max(3, getOption("digits")-3),

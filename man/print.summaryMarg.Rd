@@ -1,28 +1,28 @@
-\name{print.summary.marg}
-\alias{print.summary.marg}
+\name{print.summaryMarg}
+\alias{print.summaryMarg}
 \title{
-  Use print() on a ``summary.marg'' object
+  Use print() on a ``summaryMarg'' object
 }
 \description{
   This is a method for the function \code{print()} for objects of 
-  class \code{summary.marg}.  See \code{\link[base]{print}} 
+  class \code{summaryMarg}.  See \code{\link[base]{print}} 
   and \code{\link[base]{print.default}} for the general behaviour of 
   this function and for the interpretation of \code{digits}.
 }
 \usage{
-\method{print}{summary.marg}(x, all = x$all, Coef = x$cf, int = x$int, test = x$hyp,
+\method{print}{summaryMarg}(x, all = x$all, Coef = x$cf, int = x$int, test = x$hyp,
       digits = if(!is.null(x$digits)) x$digits else max(3, getOption("digits")-3),
       \dots)
-\method{print}{summary.marg}(x, all, Coef, int, test, digits, \dots)
+\method{print}{summaryMarg}(x, all, Coef, int, test, digits, \dots)
 }
 \arguments{
   \item{x}{
-    a \code{summary.marg} object. This is assumed to be the result 
+    a \code{summaryMarg} object. This is assumed to be the result 
     returned by the \code{summary.marg} function.
   }
   \item{all}{
     if \code{TRUE} all the information stored in the 
-    \code{summary.marg} object is printed, else only a subset of it.  
+    \code{summaryMarg} object is printed, else only a subset of it.  
     The default is \code{FALSE}.
   }
   \item{Coef}{
@@ -48,7 +48,7 @@
 \details{
   Changing the default values of \code{all}, \code{Coef}, \code{int} 
   and \code{test} allows only a subset of the information in the 
-  \code{summary.marg} object to be printed.  With \code{all = FALSE}, 
+  \code{summaryMarg} object to be printed.  With \code{all = FALSE}, 
   one-sided confidence intervals and the Lugannani-Rice tail area 
   approximation are omitted.  See \code{\link{summary.marg}} for more 
   details.

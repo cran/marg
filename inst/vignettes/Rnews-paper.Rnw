@@ -17,6 +17,7 @@
 \date{\emph{Rnews}, \textbf{5/1} May 2005, pp.~20--27}
 
 \begin{document}
+\SweaveOpts{concordance=TRUE}
 
 \maketitle
 
@@ -474,9 +475,7 @@ I.~M.~Skovgaard.
 
 \noindent
 \emph{Alessandra R. Brazzale} \newline
-\emph{Institute of Biomedical Engineering, Italian National Research Council} \newline
-\code{alessandra.brazzale@isib.cnr.it}
+\emph{Department of Statistical Sciences, University of Padova} \newline
+\code{alessandra.brazzale@unipd.it}
 
 \end{document}
-
-contour( calcium.prof, alpha = 0.05, cl1 = "black", cl2 = "black", lwd2 = 2 )    

@@ -68,7 +68,7 @@ rsm.surv(X, Y, offset, family, dispersion, score.dispersion, maxit, epsilon,
   \code{\link{rsm}} for the \code{extreme}, \code{logistic}, 
   \code{logWeibull}, \code{logExponential}, \code{logRayleigh} and 
   \code{student} (with \code{df} larger than 2) error distributions. 
-  It makes use of the \code{\link{survreg.fit}} routine to 
+  It makes use of the \code{\link[survival]{survreg.fit}} routine to 
   estimate parametric survival models.  It receives \code{X} and 
   \code{Y} data rather than a formula, but still uses the 
   \code{family.rsm} object to define the \acronym{IRLS} steps.  The

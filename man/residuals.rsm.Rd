@@ -71,7 +71,7 @@
   Davison, A. C. and Snell, E. J. (1991) Residuals and diagnostics.  
   In \emph{Statistical Theory and Modelling: In Honour of Sir David 
   Cox} (eds. D.V. Hinkley, N. Reid, and E.J. Snell), 83--106.  London:
-  Chapman \& Hall.
+  Chapman & Hall.
 
   Davison, A. C. and Tsai, C.-L. (1992) Regression model diagnostics. 
   \emph{Int. Stat. Rev.}, \bold{60}, 337--353.
